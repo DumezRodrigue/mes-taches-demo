@@ -7,6 +7,9 @@ const liste = creerListe();
 app.use(express.json());
 app.use(express.static('public'));
 
+// Sur Vercel, express.static est ignoré et / arrive ici. On renvoie vers la page.
+app.get('/', (req, res) => res.redirect('/index.html'));
+
 app.get('/api/taches', (req, res) => res.json(liste.toutes()));
 
 app.post('/api/taches', (req, res) => {
